@@ -7,6 +7,7 @@ class App extends React.Component {
       <div>
         <BrowserRouter>
           <Switch>
+            {/* Enter all routes here */}
             {/* Route to our Home Page */}
             <Route exact path='/' render ={(props) => 
               <div>Hello</div>
