@@ -1,6 +1,8 @@
 import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
+import MenuBar from './components/MenuBar'
+
 class App extends React.Component {
   render() {
     return (
@@ -9,6 +11,7 @@ class App extends React.Component {
           <Switch>
             {/* Enter all routes here */}
             {/* Route to our Home Page */}
+            <MenuBar/>
             <Route exact path='/' render ={(props) => 
               <div>Hello</div>
             }/>
@@ -17,7 +20,6 @@ class App extends React.Component {
             <Route path='/admin' render = {(props) => 
               <div>Admin</div>  
             }/>
-
           </Switch>
         </BrowserRouter>
       </div>
