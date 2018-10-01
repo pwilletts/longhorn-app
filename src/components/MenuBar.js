@@ -1,9 +1,7 @@
 import React from 'react'
-
-
-import Title from '../subcomponents/Title'
-import Logo from '../subcomponents/Logo'
-import NavBarItem from '../subcomponents/NavBarItem';
+import Title from '../subcomponents/MenuBar/Title'
+import Logo from '../subcomponents/MenuBar/Logo'
+import NavBarItem from '../subcomponents/MenuBar/NavBarItem';
 
 class MenuBar extends React.Component{
     render(){
@@ -13,11 +11,11 @@ class MenuBar extends React.Component{
                     <Title/>
                 </div>
 
-                <div className="collapse navbar-collapse col-md-4 col-md-offset-4 mr-auto" id="navbarSupportedContent">
+                <div className="collapse navbar-collapse col-md-4" id="navbarSupportedContent">
                     <Logo/>
                 </div>
                
-                <div className="col-med-3">
+                <div className="col-med-4 ml-auto">
                     <ul className="navbar-nav">
                         <NavBarItem
                             type={'badge'}
