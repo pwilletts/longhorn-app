@@ -7,7 +7,7 @@ var menuItem = ['Approve','Request', 'Track','MyTime', 'Admin'];
 class NavMenu extends React.Component{
     render(){
         return(
-            <div className='col-2 border-right sidebar' style={{minHeight:'91vh', minWidth:250}}>
+            <div className='col-12 border-right sidebar' style={{minHeight:'91vh', minWidth:250}}>
                 <div>
                     <NavHeader/>
                 </div>

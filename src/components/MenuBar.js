@@ -6,7 +6,7 @@ import NavBarItem from '../subcomponents/MenuBar/NavBarItem';
 class MenuBar extends React.Component{
     render(){
         return(
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-bottom">
+            <nav className=" col-12 navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-bottom">
                 <div className="col-md-4">
                     <Title/>
                 </div>
