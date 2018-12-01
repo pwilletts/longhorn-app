@@ -1,5 +1,20 @@
-body {
+html,body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  height:100%;
+  display:flex
 }
+
+.nopadding{
+  padding: 0 !important
+}
+
+.navbar{
+  max-height:20 !important
+}
+
+.navmenu{
+  width: '15%';
+}
+

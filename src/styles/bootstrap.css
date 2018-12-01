@@ -5125,7 +5125,7 @@ input[type="button"].btn-block {
 }
 
 .list-group-item.active {
-  z-index: 2;
+  z-index: inherit; /*changed to inherit from 2 */
   color: #fff;
   background-color: #007bff;
   border-color: #007bff;
@@ -5155,10 +5155,16 @@ input[type="button"].btn-block {
   background-color: #9fcdff;
 }
 
-.list-group-item-primary.list-group-item-action.active {
+/* .list-group-item-primary.list-group-item-action.active {
   color: #fff;
   background-color: #004085;
   border-color: #004085;
+} */
+
+.list-group-item-primary.list-group-item-action.active {
+  color: #fff;
+  background-color: grey;
+  border-color: grey;
 }
 
 .list-group-item-secondary {

@@ -22,7 +22,70 @@
   font-size: large;
 }
 
+.date-card {
+  height: auto
+}
+
+.date-card:hover{
+  background-color:  rgba(211, 211, 211, 0.37);
+}
+
+.selected-card{
+  background-color: rgba(211, 211, 211, 0.37) !important
+}
+
+.nopadding{
+  padding: 0 !important
+}
+
+.nopadding-right{
+  padding-right: 0
+}
+
+.nopadding-left{
+  padding-left: 0
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.delete-icon :hover{
+  box-shadow: 0 0 3px 10px rgba(33,33,33,.2); 
+}
+
+.delete-icon :active{
+  color:red
+}
+
+.add-icon :hover{
+  box-shadow: 0 0 3px 10px rgba(33,33,33,.2); 
+}
+
+.add-icon :active{
+  color:green
+}
+
+.navmenu{
+  width: 15% !important;
+  min-width: 150px;
+  min-height: 92vh !important;
+}
+
+.calendar{
+  width:75%
+}
+
+.cal-head-text{
+  font-size:20px !important
+}
+
+.day-text{
+  font-size: 16px
+}
+
+.visits{
+  font-size:12px
+}
+

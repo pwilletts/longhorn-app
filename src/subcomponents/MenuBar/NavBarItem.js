@@ -6,7 +6,7 @@ class NavBarItem extends React.Component{
         if(props.type === 'badge'){
             return <li className="nav-item mt-auto mb-auto"><span className="badge badge-danger">2</span></li>
         } else if (props.type === "text"){
-            return <li className="nav-item"><h5 className="ml-2 navbar-text" href="">Hello Patrick!<span className="sr-only">(current)</span></h5></li>
+            return <li className="nav-item"><h5 className="ml-2 navbar-text" href="">Hello {this.props.name}!<span className="sr-only">(current)</span></h5></li>
         }
     }
 
