@@ -28,7 +28,7 @@ class NavMenuAdmin extends React.Component{
 
     render(){
         return(
-            !this.props.interfaces || !this.props.jobs ? "" :
+            !this.props.jobs ? "" :
             <div className="mr-4 col-xs-4 col-md-3 col-lg-2 border-right nopadding" style={{float:'left'}}>
                 <div>
                     <NavHeader page={'admin'} onClick={this.route.bind(this)}/>

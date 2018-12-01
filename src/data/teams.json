@@ -1,0 +1,36 @@
+[
+  {
+    "teamName": "1000 - IS",
+    "employees": [
+      {
+        "name": "Patrick Willetts"
+      },{
+        "name": "The Macho Man Randy Savage"
+      },{
+        "name": "Hulk Hogan"
+      }
+    ]
+  },{
+    "teamName": "2000 - Financial Services",
+    "employees": [
+      {
+        "name": "Troy Aikman"
+      },{
+        "name": "Dale Earnhardt"
+      },{
+        "name": "Richard Petty"
+      }
+    ]
+  },{
+    "teamName": "3000 - EVS",
+    "employees": [
+      {
+        "name": "Greg Maddox"
+      },{
+        "name": "Tom Glavine"
+      },{
+        "name": "John Schmoltz"
+      }
+    ]
+  }
+]

@@ -13,20 +13,20 @@ class MenuBar extends React.Component{
         name: null
     }
 
-    setName(){
-        if(!this.state.name){
-            api.getEmpName().then(json => {
-                if(!json.name){
-                    return ''
-                } else {
-                    this.setState({name: json.name})
-                }
-            })
-        } else {
-            return this.state.name
-        }
-    }
-    
+    // setName(){
+    //     if(!this.state.name){
+    //         api.getEmpName().then(json => {
+    //             if(!json.name){
+    //                 return ''
+    //             } else {
+    //                 this.setState({name: json.name})
+    //             }
+    //         })
+    //     } else {
+    //         return this.state.name
+    //     }
+    // }
+
     render(){
         return(
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -35,7 +35,7 @@ class MenuBar extends React.Component{
                 </div>
                 <Large>
                     <div className="w-50 text-center logo" id="navbarSupportedContent">
-                        <Logo/>
+                        
                     </div>
                 </Large>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,10 +53,10 @@ class MenuBar extends React.Component{
                         </Medium>
                         <li className="nav-item">
                             <a className="nav-link" href="/logout">Log Out</a>
-                        </li>                        
+                        </li>
                     </ul>
                 </div>
-                
+
             </nav>
         );
     }

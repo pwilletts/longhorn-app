@@ -8,6 +8,7 @@ import SubmitModal from '../subcomponents/Modals/VisitsSubmit';
 import RowDayMini from '../subcomponents/Calendar/RowDayMini'
 import Scripts from '../scripts/Calendar'
 import api from '../api/api'
+const timeCodes = require('../data/timecodes.json')
 
 const Small = props => <Responsive {...props} maxWidth={510}/>
 
@@ -24,11 +25,13 @@ class Calendar extends React.Component{
 
     componentWillMount(){
         this.setPayPeriod();
-        if(this.state.payCodes === null){
-            api.getTimeCodes('HC').then(json=> {
-                this.setState({payCodes: json})
-            });
-        }  
+        // if(this.state.payCodes === null){
+        //     api.getTimeCodes('HC').then(json=> {
+        //         this.setState({payCodes: json})
+        //     });
+        // }
+
+        this.setState({payCodes: timeCodes})
     }
 
     setPayPeriod(){
@@ -58,8 +61,9 @@ class Calendar extends React.Component{
     }
 
     setDayInfo(){
-        api.getVisits(this.state.payPeriod)
-        .then(json => this.createDayInfo(json))
+      this.createDayInfo([])
+        // api.getVisits(this.state.payPeriod)
+        // .then(json => this.createDayInfo(json))
     }
 
     submit(){
@@ -83,7 +87,7 @@ class Calendar extends React.Component{
                 }],
                 visits: []
             };
-    
+
             var i = 0;
             for(i=0;i<=13;i++){
                 period.visits.push({
@@ -114,14 +118,15 @@ class Calendar extends React.Component{
         tempState['modified'] = true
         tempState.visits = visits
 
-        api.putVisits(this.state.days)
-        .then(json => api.getVisits(this.state.payPeriod).then(json => this.setState({days: json[0], visitModalIsOpen: false})))
+        // api.putVisits(this.state.days)
+        // .then(json => api.getVisits(this.state.payPeriod).then(json => this.setState({days: json[0], visitModalIsOpen: false})))
+        this.setState({days: this.state.days, visitModalIsOpen: false})
     }
 
     submitVisits(){
-        api.postWorkflow(this.state.payPeriod).then(result => this.setState({submitModalIsOpen: false}, function(){
-            console.log(result)
-        }))
+        // api.postWorkflow(this.state.payPeriod).then(result => this.setState({submitModalIsOpen: false}, function(){
+        //     console.log(result)
+        // }))
     }
 
     render(){
@@ -140,9 +145,9 @@ class Calendar extends React.Component{
 
                     {this.state.days ? <CalBody
                             status={this.state.ppStatus}
-                            payPeriod={this.state.payPeriod} 
+                            payPeriod={this.state.payPeriod}
                             days={this.state.days}
-                            stateChange={this.handleStateChange.bind(this)} 
+                            stateChange={this.handleStateChange.bind(this)}
                             selectedDay={this.state.selectedDay}/>
                         : ""}
 
@@ -160,17 +165,17 @@ class Calendar extends React.Component{
                             stateChange={this.handleStateChange.bind(this)}
                             period={this.state.payPeriod}
                         /> : ""}
-                    </div>        
+                    </div>
                 {this.state.selectedDay ? <Small>
                         <div className="nopadding border">
                             <RowDayMini
                                 payPeriod={this.state.payPeriod}
                                 day={this.state.selectedDay}
                                 status={this.state.ppStatus}
-                                stateChange={this.handleStateChange.bind(this)} 
+                                stateChange={this.handleStateChange.bind(this)}
                                 selectedDay={this.state.selectedDay}
                             />
-                        </div>               
+                        </div>
                 </Small> : ""}
             </React.Fragment>
         );

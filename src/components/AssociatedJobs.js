@@ -21,7 +21,7 @@ class AssociatedJobs extends React.Component{
 
     render(){
         return(
-            !this.props.jobs || !this.props.job ? "Nope" : this.props.jobs.length > 0 ? 
+            !this.props.job ? "Nope" : this.props.jobs.length > 0 ? 
             <React.Fragment>
                 <SmallScale>
                     <div>
@@ -51,17 +51,17 @@ class AssociatedJobs extends React.Component{
                                             <td>{assocJob.jobName}</td>
                                         </tr>
                                     )
-                                }                  
+                                }
                             ) : <tr className="border">
                                     <td colSpan='3' className="text-center">No jobs are associated with {this.props.job.jobName}</td>
                                 </tr>}
-                            
+
                         </tbody>
                     </table>
                     <div>
                         <div className="col-12">
                             <h6 className="text-center"><u>Use the search box below to find jobs to add...</u></h6>
-                        </div>                       
+                        </div>
                         <div className="row col-12">
                             <div class={this.props.selectedAssocJob ? "input-group col-10 ml-auto mr-auto" : "input-group col-10 ml-auto mr-auto"}>
                                 <input onChange={(e) => this.props.stateChange('searchTerm', e.target.value, 'handleSearch')} class="text-center form-control py-2 border-right-0 border" type="search" placeholder="Begin typing..." id="assocJobSearch"></input>
@@ -77,10 +77,10 @@ class AssociatedJobs extends React.Component{
                         </div>
                         <div className="col-12">
                             {!this.props.searchTerm ? "" : <SearchDropdown selected={this.props.selectedAssocJob} onSelect={this.props.stateChange.bind(this)} searchResults={this.props.searchResults}/>}
-                        </div>                    
+                        </div>
                     </div>
                 </div>
-                
+
             </React.Fragment> : ""
         )
     }

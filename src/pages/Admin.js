@@ -4,6 +4,7 @@ import NavMenuAdmin from '../components/NavMenuAdmin'
 import AssociatedJobs from '../components/AssociatedJobs'
 import api from '../api/api';
 import Scripts from '../scripts/Jobs'
+const jobList = require('../data/jobs.json')
 
 class Admin extends React.Component{
 state = {
@@ -15,15 +16,16 @@ state = {
 }
 
 getInterfaces(){
-    api.getInterfaces().then(results => this.setState({interfaces: results}))
+    //api.getInterfaces().then(results => this.setState({interfaces: results}))
 }
 
 getJobs(){
-    api.getJobs().then(results => this.setState({jobs: results}))
+    //api.getJobs().then(results => this.setState({jobs: results}))
+    this.setState({jobs: jobList})
 }
 
 getReports(){
-    api.getReports().then(results => this.setState({reports : results}))
+    //api.getReports().then(results => this.setState({reports : results}))
 }
 
 checkReadiness(param){
@@ -61,12 +63,14 @@ getItem(param, key){
 
 add() {
     const jobs = Scripts.add(this.state.jobs, Scripts.getItemByUrl(this.state.jobs, this.props.match.params.name, 'jobCode'), this.state.selectedAssocJob);
-    api.updateJobs(jobs).then(results => this.setState({jobs: results, selectedAssocJob: null}, function(value){Scripts.searchByTerm(this.state.jobs, this.props.match.params.name, 'jobCode', this.state.searchTerm)}));        
+    //api.updateJobs(jobs).then(results => this.setState({jobs: results, selectedAssocJob: null}, function(value){Scripts.searchByTerm(this.state.jobs, this.props.match.params.name, 'jobCode', this.state.searchTerm)}));
+    this.setState({jobs: jobs, selectedAssocJob: null}, function(value){Scripts.searchByTerm(this.state.jobs, this.props.match.params.name, 'jobCode', this.state.searchTerm)})
 }
 
 delete(assocJob){
     const jobs = Scripts.remove(this.state.jobs, Scripts.getItemByUrl(this.state.jobs, this.props.match.params.name, 'jobCode'), assocJob);
-    api.updateJobs(jobs).then(results => this.setState({jobs: results, selectedAssocJob: null}));
+    //api.updateJobs(jobs).then(results => this.setState({jobs: results, selectedAssocJob: null}));
+    this.setState({jobs: jobs, selectedAssocJob: null})
 }
 
 addInterface(){
@@ -117,7 +121,7 @@ render(){
                 addInterface={this.addInterface.bind(this)}
             />
 
-            {this.props.match.params.section === "jobs" ? 
+            {this.props.match.params.section === "jobs" ?
                 <AssociatedJobs
                 {...this.props}
                 job={this.getItem('jobs', 'jobCode')}

@@ -14,9 +14,7 @@ class NavMenu extends React.Component{
     componentDidMount(){
         const a = this.props.match.path.split('/');
         $(`#collapse${a[1]}`).addClass('show');
-        this.setState({selectedItem: `li${a[1]}`}, function(){
-            console.log(this.state.selectedItem)
-        })
+        this.setState({selectedItem: `li${a[1]}`})
     }
 
     setClasses(classes, active, id){
@@ -73,7 +71,7 @@ class NavMenu extends React.Component{
                             <div className="card-body nopadding">
                                 <ul className="list-group" style={{overflow:'auto',maxHeight:'54vh',pointerEvents:'auto'}}>
                                     <li id='licalendar' onClick={(e) => this.clicker(e, 'calendar')} className={this.setClasses("list-group-item list-group-item-action list-border",'active', 'licalendar')} style={{paddingLeft:'15%'}}>Calendar</li>
-                                </ul>                            
+                                </ul>
                             </div>
                         </div>
                     </div>

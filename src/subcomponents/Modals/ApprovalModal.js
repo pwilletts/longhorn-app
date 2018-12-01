@@ -35,8 +35,9 @@ class ApprovalModal extends React.Component{
 
     componentDidMount(){
         if(!this.state.employees){
-            api.getVisits({"status": "submitted"}).then(json => this.setState({employees: json}))
-        }        
+            //api.getVisits({"status": "submitted"}).then(json => this.setState({employees: json}))
+            this.setState({employees: []})
+        }
     }
 
     stateChange(target, value){
@@ -59,19 +60,19 @@ class ApprovalModal extends React.Component{
                 </div>
                 <div className="modal-body">
                     <div className="row">
-                        <div className="col-2" style={{overflow:'auto'}}>
-                            <h6 className="text-center"><u>Employee List</u></h6>
-                            <ul className="list-group">
-                                {this.state.employees.map(
-                                    emp => {
-                                        return(
-                                            <button onClick={(e) => this.stateChange('currentEmployee', emp)} type="button" class="list-group-item list-group-item-action" value={emp}>{emp.empId}</button>
-                                        )
-                                    }
-                                )}
-                            </ul>
-                        </div>
-                        {this.state.currentEmployee ? <div className="card-body nopadding">
+                        {this.state.currentEmployee && this.state.currentEmployee !== [] ? <div className="card-body nopadding">
+                            <div className="col-2" style={{overflow:'auto'}}>
+                                <h6 className="text-center"><u>Employee List</u></h6>
+                                <ul className="list-group">
+                                    {this.state.employees.map(
+                                        emp => {
+                                            return(
+                                                <button onClick={(e) => this.stateChange('currentEmployee', emp)} type="button" class="list-group-item list-group-item-action" value={emp}>{emp.empId}</button>
+                                            )
+                                        }
+                                    )}
+                                </ul>
+                            </div>
                             <div className="card-body nopadding">
                                 <table className="table table-bordered">
                                     <thead className="thead-light">
@@ -91,28 +92,28 @@ class ApprovalModal extends React.Component{
                                             <Medium><th style={{width:'12%',fontSize:14}}>{moment().day(6).format('ddd')}</th></Medium>
                                             <Large><th style={{width:'12%',fontSize:14}}>{moment().day(6).format('dddd')}</th></Large>
                                             <Large><th style={{width:'12%',fontSize:14}}>Weekly</th></Large>
-                                        </tr>          
+                                        </tr>
                                     </thead>
                                     <CalBodyRow
                                         payPeriod={this.props.period}
                                         status={"submitted"}
-                                        days={this.state.currentEmployee.visits.slice(0,7)} 
-                                        stateChange={this.state.stateChange} 
+                                        days={this.state.currentEmployee.visits.slice(0,7)}
+                                        stateChange={this.state.stateChange}
                                         selectedDay={this.state.selectedDay}
                                     />
                                     <CalBodyRow
                                         payPeriod={this.state.period}
                                         status={"submitted"}
-                                        days={this.state.currentEmployee.visits.slice(7,14)} 
-                                        stateChange={this.state.stateChange} 
+                                        days={this.state.currentEmployee.visits.slice(7,14)}
+                                        stateChange={this.state.stateChange}
                                         selectedDay={this.state.selectedDay}
                                     />
                                 </table>
-                            </div>                           
+                            </div>
                             <button type="button" className="btn btn-success ml-2">Approve</button>
                             <button type="button" className="btn btn-danger ml-2">Reject</button>
                             <button type="button" onClick={() => this.stateChange('showHistory', true)} className="btn btn-info ml-2">View History</button>
-                            {this.state.showHistory ? 
+                            {this.state.showHistory ?
                             <div style={{overflow:'auto',maxHeight:100}}>
                                 <ul className="list-group list-group-flush">
                                     {this.state.currentEmployee.history.map(
@@ -124,7 +125,7 @@ class ApprovalModal extends React.Component{
                                     )}
                                 </ul>
                             </div> : ""}
-                        </div>: ""}
+                        </div>: <h4>No timesheets require approval.</h4>}
                     </div>
                 </div> </React.Fragment>: ""}
             </Modal>

@@ -10,6 +10,9 @@ import ApprovalModal from '../subcomponents/Modals/ApprovalModal';
 const emp = ['Patrick Willetts',2,3,4,5]
 const Medium = props => <Responsive {...props} maxWidth={1045}/>
 const Large = props => <Responsive {...props} minWidth={1046}/>
+const employees = require('../data/employees.json');
+const teams = require('../data/teams.json')
+
 
 class AccordionAssoc extends React.Component{
     state ={
@@ -17,6 +20,7 @@ class AccordionAssoc extends React.Component{
         payPeriod: null,
         days: null,
         ppStatus: null,
+        selectedTeam: null,
         selectedEmployee: null,
         approvalModalIsOpen: false
     }
@@ -46,7 +50,8 @@ class AccordionAssoc extends React.Component{
     }
 
     getVisits(){
-        api.getVisits(this.state.payPeriod).then(json => this.createDayInfo(json))
+        // api.getVisits(this.state.payPeriod).then(json => this.createDayInfo(json))
+        this.createDayInfo([])
     }
 
     createDayInfo(days){
@@ -66,7 +71,7 @@ class AccordionAssoc extends React.Component{
                 }],
                 visits: []
             };
-    
+
             var i = 0;
             for(i=0;i<=13;i++){
                 period.visits.push({
@@ -112,6 +117,17 @@ class AccordionAssoc extends React.Component{
         }
     }
 
+    setEmployees(){
+      console.log(this.state.selectedTeam)
+      if(!this.state.selectedTeam || this.state.selectedTeam === 'Choose...'){
+        return employees
+      } else {
+        var a = teams.find(a => a.teamName === this.state.selectedTeam)
+        console.log(a)
+        return a.employees
+      }
+    }
+
     render(){
         return(
             <div className="col-8 card ml-2 nopadding">
@@ -123,34 +139,34 @@ class AccordionAssoc extends React.Component{
                                 <h5><u>Dates</u></h5>
                                 <h6>Pay Period Start: {this.state.payPeriod.start}</h6>
                                 <h6>Pay Period End: {this.state.payPeriod.end}</h6>
-                            </div>  
+                            </div>
                             <div class="col-auto form-group">
                                 <label class="mr-sm-2" for="selectedEmployee"><h5><u>Teams</u></h5></label>
                                 <div className="form-inline">
-                                    <select class="custom-select mr-sm-3" id="selectedEmployee" onChange={(e) => this.handleStateChange(e.target.id, e.target.value)}>
+                                    <select class="custom-select mr-sm-3" id="selectedTeam" onChange={(e) => this.handleStateChange(e.target.id, e.target.value)}>
                                         <option selected>Choose...</option>
-                                        {emp.map(
-                                            employee => {
+                                        {teams.map(
+                                            team => {
                                                 return (
-                                                    <option>{employee}</option>
+                                                    <option>{team.teamName}</option>
                                                 )
-                                            }                  
-                                        )}    
+                                            }
+                                        )}
                                     </select>
                                 </div>
-                            </div>             
+                            </div>
                             <div class="col-auto form-group">
                                 <label class="mr-sm-2" for="selectedEmployee"><h5><u>Employees</u></h5></label>
                                 <div className="form-inline">
                                     <select class="custom-select mr-sm-3" id="selectedEmployee" onChange={(e) => this.handleStateChange(e.target.id, e.target.value)}>
                                         <option selected>Choose...</option>
-                                        {emp.map(
+                                        {this.setEmployees().map(
                                             employee => {
                                                 return (
-                                                    <option>{employee}</option>
+                                                    <option>{employee.name}</option>
                                                 )
-                                            }                  
-                                        )}    
+                                            }
+                                        )}
                                     </select>
                                 </div>
                             </div>
@@ -167,7 +183,7 @@ class AccordionAssoc extends React.Component{
                         </div>
                     </form>
                 </div>
-                {this.state.days ? 
+                {this.state.days ?
                     <div className="card-body nopadding carousel-item active">
                         <div className="card-body nopadding">
                             <table className="table table-bordered">
@@ -188,20 +204,20 @@ class AccordionAssoc extends React.Component{
                                         <Medium><th style={{width:'12%',fontSize:14}}>{moment().day(6).format('ddd')}</th></Medium>
                                         <Large><th style={{width:'12%',fontSize:14}}>{moment().day(6).format('dddd')}</th></Large>
                                         <Large><th style={{width:'12%',fontSize:14}}>Weekly</th></Large>
-                                    </tr>          
+                                    </tr>
                                 </thead>
                                 <CalBodyRow
                                     payPeriod={this.state.payPeriod}
                                     status={this.state.status}
-                                    days={this.state.days.visits.slice(0,7)} 
-                                    stateChange={this.handleStateChange.bind(this)} 
+                                    days={this.state.days.visits.slice(0,7)}
+                                    stateChange={this.handleStateChange.bind(this)}
                                     selectedDay={this.state.selectedDay}
                                 />
                                 <CalBodyRow
                                     payPeriod={this.state.payPeriod}
                                     status={this.state.status}
-                                    days={this.state.days.visits.slice(7,14)} 
-                                    stateChange={this.handleStateChange.bind(this)} 
+                                    days={this.state.days.visits.slice(7,14)}
+                                    stateChange={this.handleStateChange.bind(this)}
                                     selectedDay={this.state.selectedDay}
                                 />
                             </table>

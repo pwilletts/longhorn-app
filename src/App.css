@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.pointer{
+  cursor: pointer;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -52,7 +56,7 @@
 }
 
 .delete-icon :hover{
-  box-shadow: 0 0 3px 10px rgba(33,33,33,.2); 
+  box-shadow: 0 0 3px 10px rgba(33,33,33,.2);
 }
 
 .delete-icon :active{
@@ -60,7 +64,7 @@
 }
 
 .add-icon :hover{
-  box-shadow: 0 0 3px 10px rgba(33,33,33,.2); 
+  box-shadow: 0 0 3px 10px rgba(33,33,33,.2);
 }
 
 .add-icon :active{
@@ -88,4 +92,3 @@
 .visits{
   font-size:12px
 }
-

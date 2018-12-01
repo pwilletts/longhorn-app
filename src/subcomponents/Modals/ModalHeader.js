@@ -3,7 +3,6 @@ import moment from 'moment'
 
 class ModalHeader extends React.Component{
     render(){
-        console.log(this.props.day);
         return(
             <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLabel">{`Visits for ${moment(this.props.day.date).format('MMM Do, YYYY')}`} </h5>
@@ -14,10 +13,5 @@ class ModalHeader extends React.Component{
         );
     }
 }
-  
+
 export default ModalHeader
-
-
-
-
-

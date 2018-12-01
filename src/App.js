@@ -20,16 +20,16 @@ const Medium = props => <Responsive {...props} minWidth={768}/>
 
 class App extends React.Component {
   state = {
-    session: 'unauthorized',
+    session: 'authorized',
     sec: null
   }
 
 componentWillMount(){
-  api.auth().then(json => this.setState({session: json.status}, function(){
-    if(this.state.session === 'unauthorized'){
-      window.location.replace('https://mernapdev:3001')
-    }
-  }))
+  // api.auth().then(json => this.setState({session: json.status}, function(){
+  //   if(this.state.session === 'unauthorized'){
+  //     window.location.replace('https://mernapdev:3001')
+  //   }
+  // }))
 }
 
   render() {
@@ -39,7 +39,7 @@ componentWillMount(){
           <Switch>
             {/* Enter all routes here */}
             {/* Route to our Home Page */}
-            <Route exact path='/' render ={(props) => 
+            <Route exact path='/' render ={(props) =>
               <div>
                 <div class="col-xs-12 col-md-12 nopadding">
                   <MenuBar name={this.state.name} page={"home"}/>
@@ -77,7 +77,7 @@ componentWillMount(){
             }/>
 
             {/* Route to our Admin Page */}
-            <Route path='/admin/:section?/:name?' render = {(props) => 
+            <Route path='/admin/:section?/:name?' render = {(props) =>
                 <div>
                     <div className="col-xs-12 col-md-12 nopadding">
                       <MenuBar name={this.state.name} page={"admin"}/>
