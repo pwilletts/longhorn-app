@@ -30,7 +30,7 @@ function add(jobList, currentItem, selectedAssocJob){
     var c = b.filter(a => a.jobCode === currentItem.jobCode)
     c[0].associated.push({jobName: selectedAssocJob.jobName, jobCode: selectedAssocJob.jobCode, jobDesc: selectedAssocJob.jobDesc});
     var job = b.filter(a => a.jobCode === currentItem.jobCode);
-    return job;
+    return b;
 }
 
 function remove(jobList, currentItem, itemToDelete){
@@ -39,8 +39,8 @@ function remove(jobList, currentItem, itemToDelete){
     var d = c[0].associated.findIndex(e => e.jobCode === itemToDelete.jobCode);
     c[0].associated.splice(d,1)
 
-    var job = b.filter(a => a.jobCode === currentItem.jobCode);
-    return job
+    //var job = b.filter(a => a.jobCode === currentItem.jobCode);
+    return b
 }
 
 function getItemByUrl(list, name, key){

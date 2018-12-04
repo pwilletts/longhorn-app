@@ -127,6 +127,7 @@ class Calendar extends React.Component{
         // api.postWorkflow(this.state.payPeriod).then(result => this.setState({submitModalIsOpen: false}, function(){
         //     console.log(result)
         // }))
+        this.setState({submitModalIsOpen: false})
     }
 
     render(){

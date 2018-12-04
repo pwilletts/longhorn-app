@@ -10,7 +10,7 @@ const calendarScripts = {
             b= 6
         } else {
             a=0
-            b=14
+            b=13
         }    
         return {start: moment().day(a).format("MM/DD/YYYY"), end: moment().day(b).format("MM/DD/YYYY")}
     },
@@ -21,8 +21,9 @@ const calendarScripts = {
         if(moment().week() % 2 === 0 && moment() < moment(payPeriod.end)){
             return 'Active'
         } else {
+            console.log(moment().diff(moment(payPeriod.end).day(-7), 'days'))
             if(moment().diff(moment(payPeriod.end).day(-7), 'days') >1){
-                return 'Closed'
+                return 'Active'
             } else if (moment().diff(moment(payPeriod.end).day(0), 'days') >0){
                 return 'Pending Close'
             } else {
